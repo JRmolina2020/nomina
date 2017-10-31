@@ -47,7 +47,7 @@ var f = $(this);
 var formData = new FormData(document.getElementById("formuventa"));
 formData.append("dato", "valor");
 $.ajax({
-url: "../../crud/empleado/insert.php",
+url: "../../crud/ventas/insert.php",
 type: "post",
 dataType: "html",
 data: formData,
@@ -56,11 +56,24 @@ contentType: false,
 processData: false
 })
 .done(function(res){
-swal(
-'Usuario Registrado!',
-'correctamente!',
-'success'
+swal({
+  title: 'Registro exitoso',
+  text: 'Espere un momento mientras el sistema lo Redireciona',
+  timer: 3000,
+  onOpen: function () {
+    swal.showLoading()
+  }
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+   window.location="../ventas/index.php";
+    }
+  }
 )
+
+
 $('#modalventas').modal('hide')
 readRecordsVentas() 
 $('#formuventa')[0].reset();
@@ -76,7 +89,7 @@ $('#formuventa').find('[name="codigo"]').focus();
 
 function readRecordsVentas() {
 $.get("lista.php", {}, function (data, status) {
-$(".lista_empleado").html(data);
+$(".lista_ventas").html(data);
 });
 }
 // end delete
@@ -91,7 +104,7 @@ confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
 confirmButtonText: 'Si,Eliminarlo!'
 }).then(function () {
-$.post("../../crud/empleado/operaciones.php?p="+id+"&funcion=eliminar", {
+$.post("../../crud/ventas/operaciones.php?p="+id+"&funcion=eliminarventa", {
 id: id
 },
 function (data, status) {

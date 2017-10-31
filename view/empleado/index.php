@@ -89,7 +89,7 @@
 <div class="col-lg-6">
 <div class="form-group">
 <label for="tipo">Tipo:</label>
-<select class="form-control" id="tipo" name="tipo" onchange="calcularsueldo()">
+<select class="form-control" id="tipo" name="tipo" onclick="calcularsueldo()">
 <option value="Asistente">Asistente</option>
 <option value="De Planta">De Planta</option>
 <option value="Administrador">Administrador</option>
@@ -249,6 +249,7 @@ default:
 alert('El nombre no corresponde a ningún protagonista de «Silent Hill»');
 break;
 } 
+
 }
 //emd validar comision
 </script>
